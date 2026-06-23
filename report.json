@@ -1,0 +1,63 @@
+{
+  "target": "https://example.com",
+  "score": 20,
+  "risk": "Critical",
+  "findings": [
+    {
+      "check_name": "HTTPS Enabled",
+      "status": "PASS",
+      "severity": "INFO",
+      "message": "Target is using HTTPS.",
+      "recommendation": "Ensure TLS 1.2 or higher is configured."
+    },
+    {
+      "check_name": "Strict-Transport-Security (HSTS)",
+      "status": "FAIL",
+      "severity": "CRITICAL",
+      "message": "HSTS header is missing.",
+      "recommendation": "Enable HSTS to force secure connections over HTTPS."
+    },
+    {
+      "check_name": "Content-Security-Policy (CSP)",
+      "status": "FAIL",
+      "severity": "CRITICAL",
+      "message": "CSP header is missing.",
+      "recommendation": "Implement CSP to prevent XSS and data injection attacks."
+    },
+    {
+      "check_name": "X-Frame-Options",
+      "status": "FAIL",
+      "severity": "MEDIUM",
+      "message": "X-Frame-Options header missing.",
+      "recommendation": "Set to DENY or SAMEORIGIN to prevent clickjacking."
+    },
+    {
+      "check_name": "X-Content-Type-Options",
+      "status": "FAIL",
+      "severity": "MEDIUM",
+      "message": "X-Content-Type-Options is missing or incorrect.",
+      "recommendation": "Set to 'nosniff' to prevent MIME-sniffing vulnerabilities."
+    },
+    {
+      "check_name": "Referrer-Policy",
+      "status": "FAIL",
+      "severity": "MEDIUM",
+      "message": "Referrer-Policy is missing.",
+      "recommendation": "Set a strict policy like 'no-referrer' or 'strict-origin-when-cross-origin'."
+    },
+    {
+      "check_name": "Permissions-Policy",
+      "status": "WARN",
+      "severity": "LOW",
+      "message": "Permissions-Policy is missing.",
+      "recommendation": "Implement this header to disable unneeded browser features and APIs."
+    },
+    {
+      "check_name": "Server Disclosure",
+      "status": "WARN",
+      "severity": "LOW",
+      "message": "Server exposes technology stack (Server: cloudflare, X-Powered-By: None).",
+      "recommendation": "Remove Server and X-Powered-By headers to hide infrastructure details."
+    }
+  ]
+}

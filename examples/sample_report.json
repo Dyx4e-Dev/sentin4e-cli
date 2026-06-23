@@ -1,0 +1,21 @@
+{
+  "target": "https://example.com",
+  "score": 78,
+  "risk": "Medium",
+  "findings": [
+    {
+      "check_name": "HTTPS Enabled",
+      "status": "PASS",
+      "severity": "INFO",
+      "message": "Target is using HTTPS.",
+      "recommendation": "Ensure TLS 1.2 or higher is configured."
+    },
+    {
+      "check_name": "Content-Security-Policy (CSP)",
+      "status": "FAIL",
+      "severity": "CRITICAL",
+      "message": "CSP header is missing.",
+      "recommendation": "Implement CSP to prevent XSS and data injection attacks."
+    }
+  ]
+}
