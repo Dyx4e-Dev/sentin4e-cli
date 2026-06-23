@@ -1,28 +1,38 @@
 from guardcli.scanner.score import calculate_score
 from guardcli.models.report import Finding, Severity
 
-def test_perfect_score():
+def test_score_low_risk():
     findings = [
-        Finding(check_name="Check 1", status="PASS", severity=Severity.INFO, message="", recommendation="")
+        Finding(check_name="C1", status="FAIL", severity=Severity.LOW, message="", recommendation="")
     ]
     score, risk = calculate_score(findings)
-    assert score == 100
+    assert score == 95
     assert risk == "Low"
 
-def test_critical_finding():
+def test_score_medium_risk():
     findings = [
-        Finding(check_name="Check 1", status="PASS", severity=Severity.INFO, message="", recommendation=""),
-        Finding(check_name="Check 2", status="FAIL", severity=Severity.CRITICAL, message="", recommendation="")
+        Finding(check_name="C1", status="FAIL", severity=Severity.CRITICAL, message="", recommendation="")
     ]
     score, risk = calculate_score(findings)
     assert score == 80
-    assert risk == "Critical"
+    assert risk == "Medium"
 
-def test_multiple_findings():
+def test_score_high_risk():
     findings = [
-        Finding(check_name="Check 2", status="FAIL", severity=Severity.MEDIUM, message="", recommendation=""),
-        Finding(check_name="Check 3", status="FAIL", severity=Severity.LOW, message="", recommendation="")
+        Finding(check_name="C1", status="FAIL", severity=Severity.CRITICAL, message="", recommendation=""),
+        Finding(check_name="C2", status="FAIL", severity=Severity.CRITICAL, message="", recommendation="")
     ]
     score, risk = calculate_score(findings)
-    assert score == 85
-    assert risk == "Medium"
+    assert score == 60
+    assert risk == "High"
+
+def test_score_critical_risk():
+    findings = [
+        Finding(check_name="C1", status="FAIL", severity=Severity.CRITICAL, message="", recommendation=""),
+        Finding(check_name="C2", status="FAIL", severity=Severity.CRITICAL, message="", recommendation=""),
+        Finding(check_name="C3", status="FAIL", severity=Severity.CRITICAL, message="", recommendation=""),
+        Finding(check_name="C4", status="FAIL", severity=Severity.CRITICAL, message="", recommendation="")
+    ]
+    score, risk = calculate_score(findings)
+    assert score == 20
+    assert risk == "Critical"

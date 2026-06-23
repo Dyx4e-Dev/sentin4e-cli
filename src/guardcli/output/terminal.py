@@ -56,7 +56,9 @@ def render_report(report: Report) -> None:
     summary_text.append("Score: ", style="bold")
     summary_text.append(f"{report.score}/100\n", style=f"bold {score_color}")
     summary_text.append("Risk: ", style="bold")
-    summary_text.append(f"{report.risk}", style=f"bold {risk_color}")
+    
+    risk_value = report.risk.value if hasattr(report.risk, "value") else report.risk
+    summary_text.append(f"{risk_value}", style=f"bold {risk_color}")
 
     console.print(Panel(summary_text, title="Summary", expand=False))
     console.print()

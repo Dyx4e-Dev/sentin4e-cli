@@ -9,6 +9,12 @@ class Severity(str, Enum):
     HIGH = "HIGH"
     CRITICAL = "CRITICAL"
 
+class RiskLevel(str, Enum):
+    LOW = "Low"
+    MEDIUM = "Medium"
+    HIGH = "High"
+    CRITICAL = "Critical"
+
 class Finding(BaseModel):
     check_name: str
     status: str
@@ -19,5 +25,5 @@ class Finding(BaseModel):
 class Report(BaseModel):
     target: str
     score: int
-    risk: str
+    risk: RiskLevel
     findings: List[Finding] = Field(default_factory=list)
