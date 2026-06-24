@@ -408,5 +408,15 @@ def doctor():
     console.print(f"Python Version: {sys.version.split(' ')[0]}")
     console.print(f"GuardCLI Version: {__version__}")
 
+@app.command()
+def shell():
+    """Start the interactive GuardCLI security shell."""
+    try:
+        from guardcli.shell import run_shell
+        run_shell()
+    except Exception as e:
+        console.print(f"[bold red]Shell Error:[/bold red] {e}")
+        raise typer.Exit(code=1)
+
 if __name__ == "__main__":
     app()
