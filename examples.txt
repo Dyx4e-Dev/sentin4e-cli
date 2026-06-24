@@ -1,0 +1,293 @@
+=== MalformedResponseError (BadStatusLine) ===
+
+Scan failed: MalformedResponseError
+Message: Server returned an invalid HTTP status line (WAF drop/ban).
+
+--- DEBUG INFO ---
+Target URL: https://example.com
+User-Agent: GuardCLI-Analyzer/1.0
+Exception Chain:
+http.client.BadStatusLine: <html>
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProtocolError: ('Connection aborted.', 
+BadStatusLine('<html>'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+requests.exceptions.ConnectionError: [Errno Connection aborted.] ('Connection 
+aborted.', BadStatusLine('<html>'))
+
+
+=== ConnectionClosedError ===
+
+Scan failed: ConnectionClosedError
+Message: Server closed the connection unexpectedly.
+
+--- DEBUG INFO ---
+Target URL: https://example.com
+User-Agent: GuardCLI-Analyzer/1.0
+Exception Chain:
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProtocolError: ('Connection aborted.', 
+RemoteDisconnected('Remote end closed connection without response'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+requests.exceptions.ConnectionError: [Errno Connection aborted.] ('Connection 
+aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+
+=== ExcessiveHeadersError ===
+
+Scan failed: ExcessiveHeadersError
+Message: Server returned too many headers (exceeded http.client max headers 
+limit).
+
+--- DEBUG INFO ---
+Target URL: https://example.com
+User-Agent: GuardCLI-Analyzer/1.0
+Exception Chain:
+http.client.HTTPException: got more than 100 headers
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProtocolError: ('Connection aborted.', HTTPException('got 
+more than 100 headers'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+requests.exceptions.ConnectionError: [Errno Connection aborted.] ('Connection 
+aborted.', HTTPException('got more than 100 headers'))
+
+
+=== SSLValidationError ===
+
+Scan failed: SSLValidationError
+Message: SSL/TLS verification failed: certificate verify failed
+
+--- DEBUG INFO ---
+Target URL: https://example.com
+User-Agent: GuardCLI-Analyzer/1.0
+Exception Chain:
+Traceback (most recent call last):
+  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+fetch_url_with_retry
+    response = session.get(
+        url,
+    ...<2 lines>...
+        verify=not insecure
+    )
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File 
+"C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
+ck.py", line 1241, in _execute_mock_call
+    raise effect
+requests.exceptions.SSLError: certificate verify failed
+
+

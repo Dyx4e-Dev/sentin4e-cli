@@ -1,15 +1,25 @@
-class GuardCLIError(Exception):
-    """Base exception for GuardCLI."""
+class GuardCLIException(Exception):
+    def __init__(self, message: str, original_exception: Exception = None):
+        super().__init__(message)
+        self.original_exception = original_exception
+
+class ExcessiveHeadersError(GuardCLIException):
     pass
 
-class InvalidTargetError(GuardCLIError):
-    """Raised when the provided URL target is invalid."""
+class MalformedResponseError(GuardCLIException):
     pass
 
-class ScanTimeoutError(GuardCLIError):
-    """Raised when a scan times out."""
+class ConnectionClosedError(GuardCLIException):
     pass
 
-class TLSValidationError(GuardCLIError):
-    """Raised when there is an issue validating TLS/SSL certificates."""
+class RedirectLoopError(GuardCLIException):
+    pass
+
+class SSLValidationError(GuardCLIException):
+    pass
+
+class TimeoutError(GuardCLIException):
+    pass
+
+class UnknownNetworkError(GuardCLIException):
     pass

@@ -13,3 +13,4 @@ All notable changes to this project will be documented in this file.
 - Implemented core security checks: HTTPS, HSTS, CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, Server Disclosure.
 - Built risk calculation engine with severity weights.
 - Setup TLS validation with retries and verbose logging.
+
