@@ -1,4 +1,4 @@
-from guardcli.cli import app
+from sentin4e.cli import app
 
 if __name__ == "__main__":
     app()

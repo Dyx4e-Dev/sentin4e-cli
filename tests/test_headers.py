@@ -1,5 +1,5 @@
 import pytest
-from guardcli.headers import analyze_security_headers
+from sentin4e.headers import analyze_security_headers
 
 # --- HSTS Tests ---
 

@@ -1,5 +1,5 @@
 from typing import List, Tuple
-from guardcli.schemas import Finding, AuditEntry
+from sentin4e.schemas import Finding, AuditEntry
 
 def calculate_score(findings: List[Finding]) -> Tuple[int, str, List[AuditEntry]]:
     """

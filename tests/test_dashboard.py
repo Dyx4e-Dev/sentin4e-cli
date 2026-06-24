@@ -1,6 +1,6 @@
 import pytest
 import typer
-from guardcli.dashboard import get_project_metadata, discover_features, discover_cli_commands, run_health_check
+from sentin4e.dashboard import get_project_metadata, discover_features, discover_cli_commands, run_health_check
 
 def test_get_project_metadata():
     metadata = get_project_metadata()

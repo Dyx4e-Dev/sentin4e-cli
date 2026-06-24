@@ -15,7 +15,7 @@ from rich.tree import Tree
 from rich.columns import Columns
 from rich.rule import Rule
 
-import guardcli
+import sentin4e
 
 console = Console()
 
@@ -24,10 +24,10 @@ def get_project_metadata() -> Dict[str, str]:
     metadata = {
         "version": "0.1.1",
         "author": "Dyx4e",
-        "project_name": "guard-cli",
+        "project_name": "sentin4e",
         "description": "Defensive cybersecurity CLI tool.",
         "license": "MIT License",
-        "repository": "https://github.com/Dyx4e-Dev/guard-cli",
+        "repository": "https://github.com/Dyx4e-Dev/sentin4e",
         "python_version": f"{platform.python_version()} ({platform.python_implementation()})",
         "platform": platform.platform()
     }
@@ -58,8 +58,8 @@ def get_project_metadata() -> Dict[str, str]:
     return metadata
 
 def discover_features() -> Tuple[Dict[str, List[str]], int, int]:
-    """Inspect guardcli package and group functions into categories."""
-    package = guardcli
+    """Inspect sentin4e package and group functions into categories."""
+    package = sentin4e
     categories = {}
     total_modules = 0
     total_functions = 0
@@ -163,10 +163,10 @@ def run_health_check(app: typer.Typer, commands_info: Dict[str, Any], metadata: 
     
     # 1. Version Mismatch Detection
     pyproject_version = metadata["version"]
-    runtime_version = getattr(guardcli, "__version__", "")
+    runtime_version = getattr(sentin4e, "__version__", "")
     
     if pyproject_version != "UNKNOWN" and runtime_version != "UNKNOWN" and pyproject_version != runtime_version:
-        warnings.append(f"Version Mismatch: pyproject.toml ({pyproject_version}) != guardcli.__version__ ({runtime_version})")
+        warnings.append(f"Version Mismatch: pyproject.toml ({pyproject_version}) != sentin4e.__version__ ({runtime_version})")
         
     # 2. Duplicate command detection
     # Handled by Typer implicitly, but we can verify names
@@ -191,7 +191,7 @@ def run_health_check(app: typer.Typer, commands_info: Dict[str, Any], metadata: 
     check_help(commands_info)
     
     # 4. Missing docstring detection in modules
-    package = guardcli
+    package = sentin4e
     for _, modname, _ in pkgutil.walk_packages(package.__path__, package.__name__ + "."):
         try:
             module = importlib.import_module(modname)
@@ -210,13 +210,19 @@ def render_dashboard(app: typer.Typer) -> None:
     """Print the dynamic dashboard and exit."""
     # 1. ASCII Banner
     banner = """[bold cyan]
- ██████╗ ██╗   ██╗ █████╗ ██████╗ ██████╗  ██████╗██╗     ██╗
-██╔════╝ ██║   ██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██║     ██║
-██║  ███╗██║   ██║███████║██████╔╝██║  ██║██║     ██║     ██║
-██║   ██║██║   ██║██╔══██║██╔══██╗██║  ██║██║     ██║     ██║
-╚██████╔╝╚██████╔╝██║  ██║██║  ██║██████╔╝╚██████╗███████╗██║
- ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝╚══════╝╚═╝
-                            [bold cyan]v0.1.1[/bold cyan]
+       ...                                       s       .                                             
+   .x888888hx    :                              :8      @88>                        xeee               
+  d88888888888hxx                u.    u.      .88      %8P      u.    u.          d888R               
+ 8" ... `"*8888%`       .u     x@88k u@88c.   :888ooo    .     x@88k u@88c.       d8888R         .u    
+!  "   ` .xnxx.      ud8888.  ^"8888""8888" -*8888888  .@88u  ^"8888""8888"      @ 8888R      ud8888.  
+X X   .H8888888%:  :888'8888.   8888  888R    8888    ''888E`   8888  888R     .P  8888R    :888'8888. 
+X 'hn8888888*"   > d888 '88%"   8888  888R    8888      888E    8888  888R    :F   8888R    d888 '88%" 
+X: `*88888%`     ! 8888.+"      8888  888R    8888      888E    8888  888R   x"    8888R    8888.+"    
+'8h.. ``     ..x8> 8888L        8888  888R   .8888Lu=   888E    8888  888R  d8eeeee88888eer 8888L      
+ `88888888888888f  '8888c. .+  "*88*" 8888"  ^%888*     888&   "*88*" 8888"        8888R    '8888c. .+ 
+  '%8888888888*"    "88888%      ""   'Y"      'Y"      R888"    ""   'Y"          8888R     "88888%   
+     ^"****""`        "YP'                               ""                     "*%%%%%%**~    "YP'    
+                                        v0.1.1[/bold cyan]
     [/bold cyan]"""
     from rich.panel import Panel
     from rich.align import Align
@@ -266,7 +272,7 @@ def render_help(app: typer.Typer) -> None:
         f"[bold cyan]Description:[/bold cyan] {metadata['description']}\n"
         f"[bold cyan]Repository URL:[/bold cyan] {metadata['repository']}"
     )
-    console.print(Panel(info_text, title="[bold magenta]GuardCLI Help[/bold magenta]", border_style="magenta"))
+    console.print(Panel(info_text, title="[bold magenta]Sentin4e Help[/bold magenta]", border_style="magenta"))
     
     # Available Commands
     cmd_table = Table(title="[bold green]AVAILABLE COMMANDS[/bold green]", show_header=True, header_style="bold blue")
@@ -319,10 +325,10 @@ def render_help(app: typer.Typer) -> None:
     # Usage Examples
     console.print("\n[bold yellow]USAGE EXAMPLES:[/bold yellow]")
     if "scan" in commands_info:
-        console.print("  [cyan]guard scan https://example.com[/cyan]")
-        console.print("  [cyan]guard scan https://example.com --audit[/cyan]")
-        console.print("  [cyan]guard scan https://example.com --json report.json[/cyan]")
-        console.print("  [cyan]guard scan https://example.com -k -v[/cyan]")
+        console.print("  [cyan]sentin4e scan https://example.com[/cyan]")
+        console.print("  [cyan]sentin4e scan https://example.com --audit[/cyan]")
+        console.print("  [cyan]sentin4e scan https://example.com --json report.json[/cyan]")
+        console.print("  [cyan]sentin4e scan https://example.com -k -v[/cyan]")
     if "doctor" in commands_info:
-        console.print("  [cyan]guard doctor[/cyan]")
+        console.print("  [cyan]sentin4e doctor[/cyan]")
     console.print()

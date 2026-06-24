@@ -1,6 +1,6 @@
 import re
 from typing import Dict, List
-from guardcli.schemas import Finding
+from sentin4e.schemas import Finding
 
 def analyze_security_headers(headers: Dict[str, str], is_https: bool) -> List[Finding]:
     """

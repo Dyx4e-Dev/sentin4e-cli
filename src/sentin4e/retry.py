@@ -5,7 +5,7 @@ import urllib3
 import http.client
 from typing import Tuple, List, Optional
 from requests.exceptions import RequestException
-from guardcli.exceptions import (
+from sentin4e.exceptions import (
     ExcessiveHeadersError,
     MalformedResponseError,
     ConnectionClosedError,
@@ -13,10 +13,10 @@ from guardcli.exceptions import (
     SSLValidationError,
     TimeoutError,
     UnknownNetworkError,
-    GuardCLIException
+    Sentin4eException
 )
 
-def _classify_exception(e: Exception) -> GuardCLIException:
+def _classify_exception(e: Exception) -> Sentin4eException:
     """
     Unwraps the exception chain and classifies the root cause accurately.
     Preserves the original exception chain in the `.original_exception` attribute.
@@ -72,7 +72,7 @@ def fetch_url_with_retry(
     max_retries: int = 3, 
     timeout: int = 10,
     insecure: bool = False,
-    user_agent: str = "GuardCLI-Analyzer/1.0"
+    user_agent: str = "Sentin4e-Analyzer/1.0"
 ) -> Tuple[requests.Response, List[requests.Response]]:
     """Fetch URL directly with connection retries but manual redirect handling."""
     
@@ -116,7 +116,7 @@ def fetch_with_redirect_history(
     max_retries: int = 3, 
     timeout: int = 10,
     insecure: bool = False,
-    user_agent: str = "GuardCLI-Analyzer/1.0"
+    user_agent: str = "Sentin4e-Analyzer/1.0"
 ) -> Tuple[requests.Response, List[requests.Response]]:
     """Fetch URL and traverse up to max_retries manually."""
     return fetch_url_with_retry(url, max_retries=max_retries, timeout=timeout, insecure=insecure, user_agent=user_agent)

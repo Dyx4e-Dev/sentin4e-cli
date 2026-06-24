@@ -1,6 +1,6 @@
 import pytest
-from guardcli.schemas import Finding
-from guardcli.scoring import calculate_score
+from sentin4e.schemas import Finding
+from sentin4e.scoring import calculate_score
 
 def test_perfect_score():
     findings = [

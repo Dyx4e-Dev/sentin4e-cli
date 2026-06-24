@@ -6,10 +6,10 @@ from typer.testing import CliRunner
 import requests
 import urllib3
 
-from guardcli.cli import app
-from guardcli.waf_detector import is_parked_domain
-from guardcli.retry import _classify_exception
-from guardcli.exceptions import (
+from sentin4e.cli import app
+from sentin4e.waf_detector import is_parked_domain
+from sentin4e.retry import _classify_exception
+from sentin4e.exceptions import (
     ExcessiveHeadersError,
     MalformedResponseError,
     ConnectionClosedError,
@@ -67,7 +67,7 @@ def test_classify_bad_status_line():
     assert isinstance(classified, MalformedResponseError)
     assert "invalid HTTP status line" in str(classified)
 
-@patch("guardcli.retry.requests.Session.get")
+@patch("sentin4e.retry.requests.Session.get")
 def test_cli_debug_output_for_bad_status_line(mock_get):
     root = http.client.BadStatusLine("<html>")
     err = build_nested_exception(root)
@@ -81,7 +81,7 @@ def test_cli_debug_output_for_bad_status_line(mock_get):
     assert "Exception Chain:" in result.stdout
     assert "BadStatusLine" in result.stdout
 
-@patch("guardcli.retry.requests.Session.get")
+@patch("sentin4e.retry.requests.Session.get")
 def test_ssl_error(mock_get):
     mock_get.side_effect = requests.exceptions.SSLError("certificate verify failed")
     result = runner.invoke(app, ["scan", "https://example.com"])
@@ -89,7 +89,7 @@ def test_ssl_error(mock_get):
     assert result.exit_code == 1
     assert "SSLValidationError" in stdout_flat
 
-@patch("guardcli.retry.requests.Session.get")
+@patch("sentin4e.retry.requests.Session.get")
 def test_redirect_loop(mock_get):
     mock_get.side_effect = requests.exceptions.TooManyRedirects("Exceeded 30 redirects")
     result = runner.invoke(app, ["scan", "https://example.com"])
@@ -97,7 +97,7 @@ def test_redirect_loop(mock_get):
     assert result.exit_code == 1
     assert "RedirectLoopError" in stdout_flat
 
-@patch("guardcli.retry.requests.Session.get")
+@patch("sentin4e.retry.requests.Session.get")
 def test_timeout(mock_get):
     mock_get.side_effect = requests.exceptions.Timeout("Read timed out")
     result = runner.invoke(app, ["scan", "https://example.com", "--timeout", "1"])

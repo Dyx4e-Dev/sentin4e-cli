@@ -3,7 +3,7 @@ from dataclasses import asdict
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
-from guardcli.schemas import ReportV2
+from sentin4e.schemas import ReportV2
 
 console = Console()
 

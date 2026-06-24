@@ -34,7 +34,7 @@ class TargetInfo:
 class ScanMeta:
     """Metadata regarding the scan itself."""
     scan_duration_ms: int
-    scanner_name: str = "GuardCLI"
+    scanner_name: str = "Sentin4e"
     version: str = "1.0.0"
     report_version: str = "2.0"
     scan_timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
@@ -63,7 +63,7 @@ class ScanResult:
 
 @dataclass
 class ReportV2:
-    """Version 2 of the GuardCLI JSON report schema."""
+    """Version 2 of the Sentin4e JSON report schema."""
     meta: ScanMeta
     target: TargetInfo
     results: ScanResult

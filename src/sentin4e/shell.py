@@ -11,9 +11,9 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from guardcli.cli import perform_scan, app as cli_app
-from guardcli.formatter import render_report
-from guardcli.dashboard import get_project_metadata, discover_features, discover_cli_commands
+from sentin4e.cli import perform_scan, app as cli_app
+from sentin4e.formatter import render_report
+from sentin4e.dashboard import get_project_metadata, discover_features, discover_cli_commands
 
 console = Console()
 
@@ -28,7 +28,7 @@ COMMANDS = [
     "quit",
 ]
 
-guard_completer = WordCompleter(COMMANDS, ignore_case=True)
+sentin4e_completer = WordCompleter(COMMANDS, ignore_case=True)
 
 def show_banner():
     """Displays the interactive shell banner."""
@@ -37,14 +37,21 @@ def show_banner():
     author = metadata.get("author", "Dyx4e")
     
     banner_text = f"""[bold cyan]
- ██████╗ ██╗   ██╗ █████╗ ██████╗ ██████╗  ██████╗██╗     ██╗
-██╔════╝ ██║   ██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██║     ██║
-██║  ███╗██║   ██║███████║██████╔╝██║  ██║██║     ██║     ██║
-██║   ██║██║   ██║██╔══██║██╔══██╗██║  ██║██║     ██║     ██║
-╚██████╔╝╚██████╔╝██║  ██║██║  ██║██████╔╝╚██████╗███████╗██║
- ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝╚══════╝╚═╝[/bold cyan]
+       ...                                       s       .                                             
+   .x888888hx    :                              :8      @88>                        xeee               
+  d88888888888hxx                u.    u.      .88      %8P      u.    u.          d888R               
+ 8" ... `"*8888%`       .u     x@88k u@88c.   :888ooo    .     x@88k u@88c.       d8888R         .u    
+!  "   ` .xnxx.      ud8888.  ^"8888""8888" -*8888888  .@88u  ^"8888""8888"      @ 8888R      ud8888.  
+X X   .H8888888%:  :888'8888.   8888  888R    8888    ''888E`   8888  888R     .P  8888R    :888'8888. 
+X 'hn8888888*"   > d888 '88%"   8888  888R    8888      888E    8888  888R    :F   8888R    d888 '88%" 
+X: `*88888%`     ! 8888.+"      8888  888R    8888      888E    8888  888R   x"    8888R    8888.+"    
+'8h.. ``     ..x8> 8888L        8888  888R   .8888Lu=   888E    8888  888R  d8eeeee88888eer 8888L      
+ `88888888888888f  '8888c. .+  "*88*" 8888"  ^%888*     888&   "*88*" 8888"        8888R    '8888c. .+ 
+  '%8888888888*"    "88888%      ""   'Y"      'Y"      R888"    ""   'Y"          8888R     "88888%   
+     ^"****""`        "YP'                               ""                     "*%%%%%%**~    "YP'    
+                                            By : Dyx4e[/bold cyan]
 
-[bold]GuardCLI Security Audit Framework[/bold]
+[bold]Sentin4e Security Audit Framework[/bold]
 Version : [yellow]{version}[/yellow]
 Author  : [green]{author}[/green]
 """
@@ -52,10 +59,10 @@ Author  : [green]{author}[/green]
     console.print("Type [bold yellow]help[/bold yellow] for available commands.")
 
 def run_shell():
-    """Runs the GuardCLI interactive shell."""
+    """Runs the Sentin4e interactive shell."""
     session = PromptSession(
         history=InMemoryHistory(),
-        completer=guard_completer,
+        completer=sentin4e_completer,
         complete_while_typing=True,
     )
 
@@ -63,7 +70,7 @@ def run_shell():
 
     while True:
         try:
-            text = session.prompt("guard > ").strip()
+            text = session.prompt("sentin4e > ").strip()
         except KeyboardInterrupt:
             continue
         except EOFError:
@@ -90,7 +97,7 @@ def run_shell():
             show_banner()
         elif cmd == "version":
             metadata = get_project_metadata()
-            console.print(f"GuardCLI version [bold yellow]{metadata.get('version', 'Unknown')}[/bold yellow]")
+            console.print(f"Sentin4e version [bold yellow]{metadata.get('version', 'Unknown')}[/bold yellow]")
         elif cmd == "features":
             # Reuse dynamic feature discovery
             categories, total_modules, total_functions = discover_features()
@@ -103,13 +110,13 @@ def run_shell():
         elif cmd == "help":
             console.print(Panel(
                 "[bold]help[/bold]     - Show this help message\n"
-                "[bold]version[/bold]  - Show GuardCLI version\n"
+                "[bold]version[/bold]  - Show Sentin4e version\n"
                 "[bold]features[/bold] - Discover active internal capabilities dynamically\n"
                 "[bold]scan[/bold]     - Run a security scan (e.g. scan https://example.com)\n"
                 "[bold]clear[/bold]    - Clear the terminal screen\n"
                 "[bold]banner[/bold]   - Show startup banner\n"
                 "[bold]exit/quit[/bold] - Exit the shell",
-                title="[bold blue]GuardCLI Shell Commands[/bold blue]",
+                title="[bold blue]Sentin4e Shell Commands[/bold blue]",
                 border_style="blue"
             ))
         elif cmd == "scan":
@@ -127,7 +134,7 @@ def run_shell():
                     timeout=10,
                     verbose=False,
                     debug=False,
-                    user_agent="GuardCLI-Analyzer/1.0",
+                    user_agent="Sentin4e-Analyzer/1.0",
                     insecure=False
                 )
                 render_report(report)

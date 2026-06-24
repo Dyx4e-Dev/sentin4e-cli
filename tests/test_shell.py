@@ -1,10 +1,10 @@
 import pytest
 from unittest.mock import patch, MagicMock
 
-from guardcli.shell import run_shell, show_banner
+from sentin4e.shell import run_shell, show_banner
 
-@patch("guardcli.shell.get_project_metadata")
-@patch("guardcli.shell.console.print")
+@patch("sentin4e.shell.get_project_metadata")
+@patch("sentin4e.shell.console.print")
 def test_show_banner(mock_print, mock_metadata):
     mock_metadata.return_value = {"version": "0.1.1", "author": "TestAuthor"}
     show_banner()
@@ -15,7 +15,7 @@ def test_show_banner(mock_print, mock_metadata):
     assert "TestAuthor" in banner_call_args
     assert "0.1.1" in banner_call_args
 
-@patch("guardcli.shell.PromptSession")
+@patch("sentin4e.shell.PromptSession")
 def test_shell_exit_command(mock_prompt_session):
     # Simulate user typing 'exit'
     mock_session_instance = MagicMock()
@@ -25,10 +25,10 @@ def test_shell_exit_command(mock_prompt_session):
     # run_shell should return immediately without exceptions
     run_shell()
     
-    mock_session_instance.prompt.assert_called_once_with("guard > ")
+    mock_session_instance.prompt.assert_called_once_with("sentin4e > ")
 
-@patch("guardcli.shell.console.print")
-@patch("guardcli.shell.PromptSession")
+@patch("sentin4e.shell.console.print")
+@patch("sentin4e.shell.PromptSession")
 def test_shell_help_command(mock_prompt_session, mock_print):
     # Simulate user typing 'help' then 'exit'
     mock_session_instance = MagicMock()
@@ -37,18 +37,18 @@ def test_shell_help_command(mock_prompt_session, mock_print):
     
     run_shell()
     
-    # Verify a Panel object was printed containing "GuardCLI Shell Commands"
+    # Verify a Panel object was printed containing "Sentin4e Shell Commands"
     assert mock_print.call_count > 0
     from rich.panel import Panel
     help_printed = any(
-        "GuardCLI Shell Commands" in str(args[0][0].title) 
+        "Sentin4e Shell Commands" in str(args[0][0].title) 
         for args in mock_print.call_args_list if isinstance(args[0][0], Panel)
     )
     assert help_printed
 
-@patch("guardcli.shell.console.print")
-@patch("guardcli.shell.PromptSession")
-@patch("guardcli.shell.get_project_metadata")
+@patch("sentin4e.shell.console.print")
+@patch("sentin4e.shell.PromptSession")
+@patch("sentin4e.shell.get_project_metadata")
 def test_shell_version_command(mock_metadata, mock_prompt_session, mock_print):
     mock_metadata.return_value = {"version": "1.2.3"}
     
@@ -64,9 +64,9 @@ def test_shell_version_command(mock_metadata, mock_prompt_session, mock_print):
     )
     assert version_printed
 
-@patch("guardcli.shell.perform_scan")
-@patch("guardcli.shell.render_report")
-@patch("guardcli.shell.PromptSession")
+@patch("sentin4e.shell.perform_scan")
+@patch("sentin4e.shell.render_report")
+@patch("sentin4e.shell.PromptSession")
 def test_shell_scan_command(mock_prompt_session, mock_render_report, mock_perform_scan):
     # Simulate user typing 'scan https://example.com' then 'exit'
     mock_session_instance = MagicMock()
@@ -83,14 +83,14 @@ def test_shell_scan_command(mock_prompt_session, mock_render_report, mock_perfor
         timeout=10,
         verbose=False,
         debug=False,
-        user_agent="GuardCLI-Analyzer/1.0",
+        user_agent="Sentin4e-Analyzer/1.0",
         insecure=False
     )
     
     mock_render_report.assert_called_once_with("fake_report")
 
-@patch("guardcli.shell.console.print")
-@patch("guardcli.shell.PromptSession")
+@patch("sentin4e.shell.console.print")
+@patch("sentin4e.shell.PromptSession")
 def test_shell_unknown_command(mock_prompt_session, mock_print):
     mock_session_instance = MagicMock()
     mock_session_instance.prompt.side_effect = ["foobar", "exit"]

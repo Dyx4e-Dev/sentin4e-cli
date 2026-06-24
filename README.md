@@ -1,11 +1,11 @@
-# GuardCLI
+# Sentin4e
 
 ![Python](https://img.shields.io/badge/Python->=3.11-blue)
 ![Version](https://img.shields.io/badge/version-0.1.1-blue)
 
 Professional Security Header & Infrastructure Assessment Framework.
 
-GuardCLI is a defensive cybersecurity CLI tool that audits HTTP security posture. It analyzes security headers, detects infrastructure misconfigurations, identifies WAFs, and calculates a holistic security score with high precision.
+Sentin4e is a defensive cybersecurity CLI tool that audits HTTP security posture. It analyzes security headers, detects infrastructure misconfigurations, identifies WAFs, and calculates a holistic security score with high precision.
 
 ---
 
@@ -46,8 +46,8 @@ graph TD
 
 ### Local Setup
 ```bash
-git clone https://github.com/Dyx4e-Dev/guard-cli.git
-cd guard-cli
+git clone https://github.com/Dyx4e-Dev/sentin4e.git
+cd sentin4e
 pip install .
 ```
 
@@ -60,12 +60,12 @@ pip install -e .[dev]
 
 ## Usage & Command Reference
 
-### `guard scan`
+### `sentin4e scan`
 Scan a target URL for security headers and infrastructure configurations.
 
 **Syntax**:
 ```bash
-guard scan <URL> [OPTIONS]
+sentin4e scan <URL> [OPTIONS]
 ```
 
 **Options**:
@@ -80,33 +80,33 @@ guard scan <URL> [OPTIONS]
 
 **Examples**:
 ```bash
-guard scan https://example.com
-guard scan https://example.com --audit
-guard scan https://example.com --debug
-guard scan https://example.com --json report.json
-guard scan https://example.com -k -v
+sentin4e scan https://example.com
+sentin4e scan https://example.com --audit
+sentin4e scan https://example.com --debug
+sentin4e scan https://example.com --json report.json
+sentin4e scan https://example.com -k -v
 ```
 
-### `guard doctor`
-Run internal system diagnostics to ensure the local GuardCLI installation is healthy.
+### `sentin4e doctor`
+Run internal system diagnostics to ensure the local Sentin4e installation is healthy.
 
 **Example**:
 ```bash
-guard doctor
+sentin4e doctor
 ```
 
 ### Dynamic Help
 To view the dynamically generated feature dashboard:
 ```bash
-guard --help
-guard -v
+sentin4e --help
+sentin4e -v
 ```
 
 ---
 
 ## Scan Modes & Reliability Framework
 
-GuardCLI tracks its own context to guarantee the accuracy of its findings. The engine utilizes three **Reliability Modes**:
+Sentin4e tracks its own context to guarantee the accuracy of its findings. The engine utilizes three **Reliability Modes**:
 
 1. **RELIABLE**: Represents a standard `FULL_SCAN`. The server responded cleanly with an HTTP 2xx or 3xx. Scores and grades are generated.
 2. **PARTIAL**: Represents a `PARTIAL_SCAN`. The server responded with a 401 or 403, indicating that some endpoints are hidden behind auth. Scores are partially calculated but reliability drops.
@@ -123,11 +123,11 @@ Each individual finding is tagged with a confidence rating:
 
 Standard HTTP clients (like `requests` and `http.client`) enforce strict limits on HTTP headers (e.g., maximum of 100 headers) to prevent Denial of Service (DoS) attacks. However, broken WAF configurations or malicious CDN stacking can routinely violate these limits.
 
-When this occurs, standard scanners crash. **GuardCLI engages the Fallback Inspection Engine**. 
+When this occurs, standard scanners crash. **Sentin4e engages the Fallback Inspection Engine**. 
 
 1. An `ExcessiveHeadersError` is caught.
-2. GuardCLI opens a **Raw TLS Socket** connection directly to the host.
-3. GuardCLI streams only the first 16KB of the response to manually extract the status line, the first 50 headers, and header duplicate counts.
+2. Sentin4e opens a **Raw TLS Socket** connection directly to the host.
+3. Sentin4e streams only the first 16KB of the response to manually extract the status line, the first 50 headers, and header duplicate counts.
 4. Security analysis is performed on the extracted telemetry, and WAF detection is run.
 5. The scan reliability drops to **UNRELIABLE** and the overall security score is suppressed, but the user is provided with critical diagnostics on why the infrastructure is failing.
 
@@ -135,7 +135,7 @@ When this occurs, standard scanners crash. **GuardCLI engages the Fallback Inspe
 
 ## Security Scoring
 
-GuardCLI employs a deduplicated penalty-weight scoring system starting at `100/100`.
+Sentin4e employs a deduplicated penalty-weight scoring system starting at `100/100`.
 
 ### Severity Matrix:
 - **CRITICAL**: -20 points (e.g., Missing HTTPS, Unmitigated 'unsafe-inline' in CSP)
@@ -157,12 +157,12 @@ GuardCLI employs a deduplicated penalty-weight scoring system starting at `100/1
 ## Output Formats
 
 ### JSON Reporting (V2)
-GuardCLI V2 introduces a heavily structured reporting schema designed for SIEM and automation ingestion.
+Sentin4e V2 introduces a heavily structured reporting schema designed for SIEM and automation ingestion.
 
 ```json
 {
   "meta": {
-    "scanner_name": "GuardCLI",
+    "scanner_name": "Sentin4e",
     "version": "0.1.1",
     "scan_duration_ms": 142,
     "report_version": "2.0",
@@ -191,11 +191,11 @@ GuardCLI V2 introduces a heavily structured reporting schema designed for SIEM a
 ## Project Structure
 
 ```text
-guard-cli/
+sentin4e/
 ├── pyproject.toml
 ├── README.md
 ├── src/
-│   └── guardcli/
+│   └── sentin4e/
 │       ├── __init__.py
 │       ├── cli.py               # Typer CLI Entrypoints
 │       ├── dashboard.py         # Dynamic Discovery & Dashboards
@@ -220,10 +220,10 @@ guard-cli/
 
 ## Testing
 
-GuardCLI enforces robust testing paradigms including mocked network paths, exception bubbling, and AST parsing checks.
+Sentin4e enforces robust testing paradigms including mocked network paths, exception bubbling, and AST parsing checks.
 
 ```bash
-pytest tests/ -v --cov=src/guardcli
+pytest tests/ -v --cov=src/sentin4e
 ```
 
 ---
@@ -233,7 +233,7 @@ pytest tests/ -v --cov=src/guardcli
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Ensure all tests and dynamic health checks pass (`guard doctor`)
+4. Ensure all tests and dynamic health checks pass (`sentin4e doctor`)
 5. Push to the branch (`git push origin feature/amazing-feature`)
 6. Open a Pull Request
 

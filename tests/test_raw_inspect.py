@@ -1,7 +1,7 @@
 """Tests for the raw_inspect module and fallback inspection flow."""
 import pytest
 from unittest.mock import patch, MagicMock
-from guardcli.raw_inspect import raw_inspect, _parse_raw_response, RawInspectionResult
+from sentin4e.raw_inspect import raw_inspect, _parse_raw_response, RawInspectionResult
 
 
 class TestParseRawResponse:
@@ -108,8 +108,8 @@ class TestParseRawResponse:
 class TestRawInspectIntegration:
     """Tests for the raw_inspect function with mocked sockets."""
 
-    @patch("guardcli.raw_inspect.socket.create_connection")
-    @patch("guardcli.raw_inspect.ssl.create_default_context")
+    @patch("sentin4e.raw_inspect.socket.create_connection")
+    @patch("sentin4e.raw_inspect.ssl.create_default_context")
     def test_successful_https_inspection(self, mock_ssl_ctx, mock_create_conn):
         raw_response = (
             b"HTTP/1.1 200 OK\r\n"
@@ -134,7 +134,7 @@ class TestRawInspectIntegration:
         assert result.total_header_count == 3
         assert result.duplicate_counts["x-robots-tag"] == 2
 
-    @patch("guardcli.raw_inspect.socket.create_connection")
+    @patch("sentin4e.raw_inspect.socket.create_connection")
     def test_socket_timeout(self, mock_create_conn):
         import socket
         mock_create_conn.side_effect = socket.timeout("timed out")
@@ -144,8 +144,8 @@ class TestRawInspectIntegration:
         assert result.success is False
         assert "timed out" in result.error.lower()
 
-    @patch("guardcli.raw_inspect.socket.create_connection")
-    @patch("guardcli.raw_inspect.ssl.create_default_context")
+    @patch("sentin4e.raw_inspect.socket.create_connection")
+    @patch("sentin4e.raw_inspect.ssl.create_default_context")
     def test_ssl_error(self, mock_ssl_ctx, mock_create_conn):
         import ssl
         mock_raw_sock = MagicMock()
@@ -166,15 +166,15 @@ class TestRawInspectIntegration:
 class TestFallbackCLIFlow:
     """Test the fallback flow in the CLI when ExcessiveHeadersError is raised."""
 
-    @patch("guardcli.raw_inspect.socket.create_connection")
-    @patch("guardcli.raw_inspect.ssl.create_default_context")
-    @patch("guardcli.retry.requests.Session.get")
+    @patch("sentin4e.raw_inspect.socket.create_connection")
+    @patch("sentin4e.raw_inspect.ssl.create_default_context")
+    @patch("sentin4e.retry.requests.Session.get")
     def test_excessive_headers_triggers_fallback(self, mock_get, mock_ssl_ctx, mock_create_conn):
         import http.client
         import urllib3
         import requests
         from typer.testing import CliRunner
-        from guardcli.cli import app
+        from sentin4e.cli import app
 
         # Make the normal HTTP client fail with ExcessiveHeadersError
         root = http.client.HTTPException("got more than 100 headers")

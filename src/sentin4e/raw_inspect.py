@@ -34,7 +34,7 @@ class RawInspectionResult:
     truncated: bool = False
 
 
-def raw_inspect(url: str, timeout: int = SOCKET_TIMEOUT, user_agent: str = "GuardCLI-Analyzer/1.0") -> RawInspectionResult:
+def raw_inspect(url: str, timeout: int = SOCKET_TIMEOUT, user_agent: str = "Sentin4e-Analyzer/1.0") -> RawInspectionResult:
     """
     Open a raw TLS/TCP socket to the target, send a minimal HTTP/1.1 GET,
     read the first 16KB of the response, and parse status line + headers.

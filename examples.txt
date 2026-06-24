@@ -5,7 +5,7 @@ Message: Server returned an invalid HTTP status line (WAF drop/ban).
 
 --- DEBUG INFO ---
 Target URL: https://example.com
-User-Agent: GuardCLI-Analyzer/1.0
+User-Agent: Sentin4e-Analyzer/1.0
 Exception Chain:
 http.client.BadStatusLine: <html>
 
@@ -17,7 +17,7 @@ BadStatusLine('<html>'))
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -38,7 +38,7 @@ ck.py", line 1180, in _mock_call
 "C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
 ck.py", line 1241, in _execute_mock_call
     raise effect
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -59,7 +59,7 @@ ck.py", line 1180, in _mock_call
 "C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
 ck.py", line 1241, in _execute_mock_call
     raise effect
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -91,7 +91,7 @@ Message: Server closed the connection unexpectedly.
 
 --- DEBUG INFO ---
 Target URL: https://example.com
-User-Agent: GuardCLI-Analyzer/1.0
+User-Agent: Sentin4e-Analyzer/1.0
 Exception Chain:
 http.client.RemoteDisconnected: Remote end closed connection without response
 
@@ -103,7 +103,7 @@ RemoteDisconnected('Remote end closed connection without response'))
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -124,7 +124,7 @@ ck.py", line 1180, in _mock_call
 "C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
 ck.py", line 1241, in _execute_mock_call
     raise effect
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -145,7 +145,7 @@ ck.py", line 1180, in _mock_call
 "C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
 ck.py", line 1241, in _execute_mock_call
     raise effect
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -178,7 +178,7 @@ limit).
 
 --- DEBUG INFO ---
 Target URL: https://example.com
-User-Agent: GuardCLI-Analyzer/1.0
+User-Agent: Sentin4e-Analyzer/1.0
 Exception Chain:
 http.client.HTTPException: got more than 100 headers
 
@@ -190,7 +190,7 @@ more than 100 headers'))
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -211,7 +211,7 @@ ck.py", line 1180, in _mock_call
 "C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
 ck.py", line 1241, in _execute_mock_call
     raise effect
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -232,7 +232,7 @@ ck.py", line 1180, in _mock_call
 "C:\Users\guest_u5a14a7\AppData\Local\Python\pythoncore-3.14-64\Lib\unittest\mo
 ck.py", line 1241, in _execute_mock_call
     raise effect
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,
@@ -264,10 +264,10 @@ Message: SSL/TLS verification failed: certificate verify failed
 
 --- DEBUG INFO ---
 Target URL: https://example.com
-User-Agent: GuardCLI-Analyzer/1.0
+User-Agent: Sentin4e-Analyzer/1.0
 Exception Chain:
 Traceback (most recent call last):
-  File "C:\PROJECT\guard-cli\src\guardcli\retry.py", line 89, in 
+  File "C:\PROJECT\sentin4e\src\sentin4e\retry.py", line 89, in 
 fetch_url_with_retry
     response = session.get(
         url,

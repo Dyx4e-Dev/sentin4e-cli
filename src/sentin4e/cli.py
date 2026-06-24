@@ -7,21 +7,21 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from guardcli.schemas import ReportV2, ScanMeta, TargetInfo, ScanResult, ScanSummary, Finding, AuditEntry
-from guardcli.retry import fetch_with_redirect_history
-from guardcli.waf_detector import detect_waf, analyze_response_context, is_parked_domain
-from guardcli.headers import analyze_security_headers
-from guardcli.scoring import calculate_score
-from guardcli.formatter import render_report, export_json
-from guardcli.exceptions import GuardCLIException, ExcessiveHeadersError
-from guardcli.raw_inspect import raw_inspect
+from sentin4e.schemas import ReportV2, ScanMeta, TargetInfo, ScanResult, ScanSummary, Finding, AuditEntry
+from sentin4e.retry import fetch_with_redirect_history
+from sentin4e.waf_detector import detect_waf, analyze_response_context, is_parked_domain
+from sentin4e.headers import analyze_security_headers
+from sentin4e.scoring import calculate_score
+from sentin4e.formatter import render_report, export_json
+from sentin4e.exceptions import Sentin4eException, ExcessiveHeadersError
+from sentin4e.raw_inspect import raw_inspect
 
-app = typer.Typer(help="GuardCLI - Defensive cybersecurity CLI tool.", no_args_is_help=True, add_help_option=False)
+app = typer.Typer(help="Sentin4e - Defensive cybersecurity CLI tool.", no_args_is_help=True, add_help_option=False)
 console = Console()
 __version__ = "1.0.0"
 
 from typing import Optional
-from guardcli.dashboard import render_dashboard, render_help
+from sentin4e.dashboard import render_dashboard, render_help
 
 def version_callback(value: bool):
     """Callback for rendering the dynamic version dashboard."""
@@ -44,7 +44,7 @@ def main(
         None, "--help", "-h", callback=help_callback, is_eager=True, help="Show dynamic help system."
     )
 ):
-    """GuardCLI - Defensive cybersecurity CLI tool."""
+    """Sentin4e - Defensive cybersecurity CLI tool."""
     pass
 
 def _render_fallback_report(url: str, inspection, user_agent: str, debug: bool) -> ReportV2:
@@ -180,7 +180,7 @@ def _render_fallback_report(url: str, inspection, user_agent: str, debug: bool) 
     scan_duration_ms = int((time.time() - start_time) * 1000)
 
     report = ReportV2(
-        meta=ScanMeta(scanner_name="GuardCLI", version=__version__, scan_duration_ms=scan_duration_ms, report_version="2.0"),
+        meta=ScanMeta(scanner_name="Sentin4e", version=__version__, scan_duration_ms=scan_duration_ms, report_version="2.0"),
         target=TargetInfo(
             url=url,
             status_code=inspection.status_code,
@@ -204,7 +204,7 @@ def _render_fallback_report(url: str, inspection, user_agent: str, debug: bool) 
     return report
 
 
-def perform_scan(url: str, timeout: int = 10, verbose: bool = False, debug: bool = False, user_agent: str = "GuardCLI-Analyzer/1.0", insecure: bool = False):
+def perform_scan(url: str, timeout: int = 10, verbose: bool = False, debug: bool = False, user_agent: str = "Sentin4e-Analyzer/1.0", insecure: bool = False):
     """Perform a security scan against the target URL."""
     start_time = time.time()
     
@@ -245,7 +245,7 @@ def perform_scan(url: str, timeout: int = 10, verbose: bool = False, debug: bool
         normalized_headers = {k.lower(): v.lower() for k, v in raw_headers.items()}
         return report, raw_headers, normalized_headers
 
-    except GuardCLIException as e:
+    except Sentin4eException as e:
         console.print(f"\n[bold red]Scan failed:[/bold red] {e.__class__.__name__}")
         console.print(f"[bold yellow]Message:[/bold yellow] {str(e)}")
         
@@ -264,7 +264,7 @@ def perform_scan(url: str, timeout: int = 10, verbose: bool = False, debug: bool
         is_ssl_err = "SSL" in e.__class__.__name__
         scan_duration_ms = int((time.time() - start_time) * 1000)
         report = ReportV2(
-            meta=ScanMeta(scanner_name="GuardCLI", version=__version__, scan_duration_ms=scan_duration_ms, report_version="2.0"),
+            meta=ScanMeta(scanner_name="Sentin4e", version=__version__, scan_duration_ms=scan_duration_ms, report_version="2.0"),
             target=TargetInfo(
                 url=url,
                 status_code=0,
@@ -329,7 +329,7 @@ def perform_scan(url: str, timeout: int = 10, verbose: bool = False, debug: bool
     scan_duration_ms = int((time.time() - start_time) * 1000)
     
     report = ReportV2(
-        meta=ScanMeta(scanner_name="GuardCLI", version=__version__, scan_duration_ms=scan_duration_ms, report_version="2.0"),
+        meta=ScanMeta(scanner_name="Sentin4e", version=__version__, scan_duration_ms=scan_duration_ms, report_version="2.0"),
         target=TargetInfo(
             url=response.url, 
             status_code=response.status_code, 
@@ -353,7 +353,7 @@ def scan(
     insecure: bool = typer.Option(False, "--insecure", "-k", help="Disable SSL certificate verification"),
     json_export: str = typer.Option(None, "--json", help="Path to export JSON report (v2)"),
     json_v1_export: str = typer.Option(None, "--json-v1", help="Path to export legacy JSON report (v1)"),
-    user_agent: str = typer.Option("GuardCLI-Analyzer/1.0", "--user-agent", "-ua", help="Custom User-Agent"),
+    user_agent: str = typer.Option("Sentin4e-Analyzer/1.0", "--user-agent", "-ua", help="Custom User-Agent"),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose logging"),
     debug: bool = typer.Option(False, "--debug", "-d", help="Enable debug output for root cause analysis"),
     audit: bool = typer.Option(False, "--audit", help="Enable internal audit mode to print raw and normalized headers and penalties")
@@ -404,15 +404,15 @@ def scan(
 @app.command()
 def doctor():
     """Run internal system diagnostics."""
-    console.print("[bold cyan]GuardCLI System Check[/bold cyan]")
+    console.print("[bold cyan]Sentin4e System Check[/bold cyan]")
     console.print(f"Python Version: {sys.version.split(' ')[0]}")
-    console.print(f"GuardCLI Version: {__version__}")
+    console.print(f"Sentin4e Version: {__version__}")
 
 @app.command()
 def shell():
-    """Start the interactive GuardCLI security shell."""
+    """Start the interactive Sentin4e security shell."""
     try:
-        from guardcli.shell import run_shell
+        from sentin4e.shell import run_shell
         run_shell()
     except Exception as e:
         console.print(f"[bold red]Shell Error:[/bold red] {e}")

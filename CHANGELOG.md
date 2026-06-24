@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [0.1.0] - 2026-06-23
 
 ### Added
-- Initial release of GuardCLI.
+- Initial release of Sentin4e.
 - Added `scan` command for full security checks.
 - Added `headers` command for quick inspection.
 - Added `export` command for JSON reports.
