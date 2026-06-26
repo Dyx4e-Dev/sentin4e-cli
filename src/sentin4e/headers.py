@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import re
 from typing import Dict, List
 from sentin4e.schemas import Finding

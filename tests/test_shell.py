@@ -12,8 +12,9 @@ def test_show_banner(mock_print, mock_metadata):
     # Verify console.print was called with the banner text containing "TestAuthor"
     assert mock_print.call_count >= 2
     banner_call_args = mock_print.call_args_list[0][0][0]
-    assert "TestAuthor" in banner_call_args
-    assert "0.1.1" in banner_call_args
+    banner_text = banner_call_args.renderable if hasattr(banner_call_args, "renderable") else str(banner_call_args)
+    assert "TestAuthor" in banner_text
+    assert "0.1.1" in banner_text
 
 @patch("sentin4e.shell.PromptSession")
 def test_shell_exit_command(mock_prompt_session):

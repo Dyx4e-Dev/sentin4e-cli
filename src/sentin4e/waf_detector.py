@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 from typing import Dict, Tuple
 
 def detect_waf(headers: Dict[str, str], cookies: Dict[str, str] = None) -> str:

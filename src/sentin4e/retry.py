@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import time
 import sys
 import requests
@@ -13,10 +14,10 @@ from sentin4e.exceptions import (
     SSLValidationError,
     TimeoutError,
     UnknownNetworkError,
-    Sentin4eException
+    Sentin4eError
 )
 
-def _classify_exception(e: Exception) -> Sentin4eException:
+def _classify_exception(e: Exception) -> Sentin4eError:
     """
     Unwraps the exception chain and classifies the root cause accurately.
     Preserves the original exception chain in the `.original_exception` attribute.

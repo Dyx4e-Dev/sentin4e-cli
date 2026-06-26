@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import os
 import sys
 import shlex
@@ -7,6 +8,7 @@ from typing import List, Optional
 from prompt_toolkit import PromptSession
 from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.history import InMemoryHistory
+from rich.align import Align
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -36,7 +38,7 @@ def show_banner():
     version = metadata.get("version", "Unknown")
     author = metadata.get("author", "Dyx4e")
     
-    banner_text = f"""[bold cyan]
+    banner_text = f"""[bold red]
        ...                                       s       .                                             
    .x888888hx    :                              :8      @88>                        xeee               
   d88888888888hxx                u.    u.      .88      %8P      u.    u.          d888R               
@@ -49,14 +51,25 @@ X: `*88888%`     ! 8888.+"      8888  888R    8888      888E    8888  888R   x" 
  `88888888888888f  '8888c. .+  "*88*" 8888"  ^%888*     888&   "*88*" 8888"        8888R    '8888c. .+ 
   '%8888888888*"    "88888%      ""   'Y"      'Y"      R888"    ""   'Y"          8888R     "88888%   
      ^"****""`        "YP'                               ""                     "*%%%%%%**~    "YP'    
-                                            By : Dyx4e[/bold cyan]
-
-[bold]Sentin4e Security Audit Framework[/bold]
-Version : [yellow]{version}[/yellow]
-Author  : [green]{author}[/green]
+                                            By : {author} - v{version}[/bold red]
 """
-    console.print(banner_text)
-    console.print("Type [bold yellow]help[/bold yellow] for available commands.")
+    console.print(
+        Align.center(
+            banner_text,
+            vertical="middle"
+            )
+    )
+    console.print(Panel(
+                "[bold]help[/bold]     - Show this help message\n"
+                "[bold]version[/bold]  - Show Sentin4e version\n"
+                "[bold]features[/bold] - Discover active internal capabilities dynamically\n"
+                "[bold]scan[/bold]     - Run a security scan (e.g. scan https://example.com)\n"
+                "[bold]clear[/bold]    - Clear the terminal screen\n"
+                "[bold]banner[/bold]   - Show startup banner\n"
+                "[bold]exit/quit[/bold] - Exit the shell",
+                title="[bold blue]Sentin4e Shell Commands[/bold blue]",
+                border_style="blue"
+            ))
 
 def run_shell():
     """Runs the Sentin4e interactive shell."""

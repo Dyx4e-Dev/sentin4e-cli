@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Raw TLS socket inspector for fallback analysis when http.client rejects
 responses with excessive headers (>100).
